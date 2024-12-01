@@ -10,9 +10,8 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import React from 'react';
-
-// import { FloatingComposer, FloatingThreads, liveblocksConfig, LiveblocksPlugin, useEditorStatus } from '@liveblocks/react-lexical'
-// import Loader from '../Loader';
+import { FloatingComposer, FloatingThreads, liveblocksConfig, LiveblocksPlugin, useEditorStatus } from '@liveblocks/react-lexical'
+import Loader from '../Loader';
 
 // import FloatingToolbarPlugin from './plugins/FloatingToolbarPlugin'
 // import { useThreads } from '@liveblocks/react/suspense';
@@ -31,7 +30,7 @@ export function Editor() {
   // const status = useEditorStatus();
   // const { threads } = useThreads();
 
-  const initialConfig = {
+  const initialConfig = liveblocksConfig({
     namespace: 'Editor',
     nodes: [HeadingNode],
     onError: (error: Error) => {
@@ -39,8 +38,9 @@ export function Editor() {
       throw error;
     },
     theme: Theme,
-    // editable: currentUserType === 'editor',
-  };
+    editable: true,
+  });
+
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
