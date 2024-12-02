@@ -30,7 +30,7 @@ const Home = async () => {
       {roomDocuments.data.length > 0 ? (
         <div className="document-list-container">
           <div className="document-list-title">
-            <h3 className="text-28-semibold">All documents</h3>
+            <h3 className="text-lg md:text-xl font-semibold">All documents</h3>
             <AddDocumentBtn 
               userId={clerkUser.id}
               email={clerkUser.emailAddresses[0].emailAddress}
@@ -49,8 +49,8 @@ const Home = async () => {
                     />
                   </div>
                   <div className="space-y-1">
-                    <p className="line-clamp-1 text-lg">{metadata.title}</p>
-                    <p className="text-sm font-light text-blue-100">Created about {dateConverter(createdAt)}</p>
+                    <p className="line-clamp-1 text-md md:text-lg">{metadata.title}</p>
+                    <p className="text-xs md:text-sm font-light text-blue-100">Created about {dateConverter(createdAt)}</p>
                   </div>
                 </Link>
                 <DeleteModal roomId={id} />
