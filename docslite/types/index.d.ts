@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-declare type SearchParamProps = {
+  declare type SearchParamProps = {
     params: { [key: string]: string };
     searchParams: { [key: string]: string | string[] | undefined };
   };
@@ -78,3 +78,12 @@ declare type SearchParamProps = {
   declare type DeleteModalProps = { roomId: string };
   
   declare type ThreadWrapperProps = { thread: ThreadData<BaseMetadata> };
+
+  declare type roomDocumentsType = {
+    id: string;
+    metadata: {
+      title: string;
+    };
+    createdAt: string;
+  };
+  
