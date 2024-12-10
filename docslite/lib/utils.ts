@@ -22,28 +22,30 @@ export const getAccessType = (userType: UserType) => {
   }
 };
 
-export const dateConverter = (timestamp: string): string => {
-  const timestampNum = Math.round(new Date(timestamp).getTime() / 1000);
-  const date: Date = new Date(timestampNum * 1000);
-  const now: Date = new Date();
+export const dateConverter = (timestamp: string | Date): string => {
+  const date = typeof timestamp === "string" ? new Date(timestamp) : timestamp;
+  if (isNaN(date.getTime())) {
+    return "Invalid date"; // Handle invalid dates
+  }
 
-  const diff: number = now.getTime() - date.getTime();
-  const diffInSeconds: number = diff / 1000;
-  const diffInMinutes: number = diffInSeconds / 60;
-  const diffInHours: number = diffInMinutes / 60;
-  const diffInDays: number = diffInHours / 24;
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
-  switch (true) {
-    case diffInDays > 7:
-      return `${Math.floor(diffInDays / 7)} weeks ago`;
-    case diffInDays >= 1 && diffInDays <= 7:
-      return `${Math.floor(diffInDays)} days ago`;
-    case diffInHours >= 1:
-      return `${Math.floor(diffInHours)} hours ago`;
-    case diffInMinutes >= 1:
-      return `${Math.floor(diffInMinutes)} minutes ago`;
-    default:
-      return 'Just now';
+  const secondsInMinute = 60;
+  const secondsInHour = 60 * secondsInMinute;
+  const secondsInDay = 24 * secondsInHour;
+  const secondsInWeek = 7 * secondsInDay;
+
+  if (diffInSeconds < secondsInMinute) {
+    return "Just now";
+  } else if (diffInSeconds < secondsInHour) {
+    return `${Math.floor(diffInSeconds / secondsInMinute)} minutes ago`;
+  } else if (diffInSeconds < secondsInDay) {
+    return `${Math.floor(diffInSeconds / secondsInHour)} hours ago`;
+  } else if (diffInSeconds < secondsInWeek) {
+    return `${Math.floor(diffInSeconds / secondsInDay)} days ago`;
+  } else {
+    return `${Math.floor(diffInSeconds / secondsInWeek)} weeks ago`;
   }
 };
 

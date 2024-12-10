@@ -79,11 +79,11 @@
   
   declare type ThreadWrapperProps = { thread: ThreadData<BaseMetadata> };
 
-  declare type roomDocumentsType = {
+  declare type RoomData = {
     id: string;
     metadata: {
-      title: string;
+      title?: string;
     };
-    createdAt: string;
+    createdAt: Date;
   };
   

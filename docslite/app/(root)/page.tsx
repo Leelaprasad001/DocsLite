@@ -27,7 +27,7 @@ const Home = async () => {
         </div>
       </Header>
 
-      {roomDocuments.data.length > 0 ? (
+      {roomDocuments && roomDocuments.data.length > 0 ? (
         <div className="document-list-container">
           <div className="document-list-title">
             <h3 className="text-lg md:text-xl font-semibold">All documents</h3>
@@ -37,7 +37,7 @@ const Home = async () => {
             />
           </div>
           <ul className="document-ul">
-            {roomDocuments.data.map(({ id, metadata, createdAt }: roomDocumentsType) => (
+            {roomDocuments.data.map(({ id, metadata, createdAt }: RoomData) => (
               <li key={id} className="document-list-item">
                 <Link href={`/documents/${id}`} className="flex flex-1 items-center gap-4">
                   <div className="hidden rounded-md bg-dark-500 p-2 sm:block">
