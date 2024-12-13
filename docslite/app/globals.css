@@ -183,7 +183,8 @@
 .cl-signIn-start,
 .cl-signUp-start,
 .cl-footer {
-  background: #060d18;
+  background: #0F1C34;
+  opacity: 70;
   box-shadow: none;
   padding: 20px;
 }
