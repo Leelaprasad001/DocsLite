@@ -3,7 +3,6 @@
 import Loader from '@/components/Loader';
 import { getClerkUsers, getDocumentUsers } from '@/lib/actions/user.actions';
 import { useUser } from '@clerk/nextjs';
-import Header from '@/components/Header';
 import Main from '@/components/Main';
 import { ClientSideSuspense, LiveblocksProvider } from '@liveblocks/react/suspense';
 import { ReactNode } from 'react';
