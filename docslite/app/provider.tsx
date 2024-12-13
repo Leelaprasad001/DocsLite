@@ -3,18 +3,19 @@
 import Loader from '@/components/Loader';
 import { getClerkUsers, getDocumentUsers } from '@/lib/actions/user.actions';
 import { useUser } from '@clerk/nextjs';
+import Header from '@/components/Header';
+import Main from '@/components/Main';
 import { ClientSideSuspense, LiveblocksProvider } from '@liveblocks/react/suspense';
 import { ReactNode } from 'react';
 
-const Provider = ({ children }: { children: ReactNode}) => {
+const Provider = ({ children }: { children: ReactNode }) => {
   const { user: clerkUser } = useUser();
 
   return (
-    <LiveblocksProvider 
+    <LiveblocksProvider
       authEndpoint="/api/liveblocks-auth"
       resolveUsers={async ({ userIds }) => {
-        const users = await getClerkUsers({ userIds});
-
+        const users = await getClerkUsers({ userIds });
         return users;
       }}
       resolveMentionSuggestions={async ({ text, roomId }) => {
@@ -33,10 +34,14 @@ const Provider = ({ children }: { children: ReactNode}) => {
       }}
     >
       <ClientSideSuspense fallback={<Loader />}>
-        {children}
+        {clerkUser ? (
+          <>{children}</>
+        ) : (
+          <Main>{children}</Main>
+        )}
       </ClientSideSuspense>
     </LiveblocksProvider>
-  )
-}
+  );
+};
 
-export default Provider
+export default Provider;
