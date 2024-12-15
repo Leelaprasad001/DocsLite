@@ -2,6 +2,8 @@
 
 Welcome to **DocsLite** 📂, a dynamic and user-friendly platform designed to revolutionize the way teams collaborate on documents. Whether you're working on a shared project 💼, brainstorming ideas 🧠, or organizing personal documents 📄, DocsLite ensures a seamless, secure, and efficient experience tailored to your needs.
 
+Built with Next.js & TypeScript ❤️.
+
 **🔗 Live Link:** [DocsLite](https://docslite.vercel.app/)
   
 ## **💡 Tech Stack**
